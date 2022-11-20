@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Ample Admin Lite Template by WrapPixel</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+    <!-- Custom CSS -->
+    <link href="css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            </nav>
+        </header>
+
+        <div class="page-wrapper">
+
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Dashboard</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="#" class="fw-normal"></a></li>
+                            </ol>
+                            <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Recognization
+                                Face Mark</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Mark</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-success">659</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Without Mark</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash2"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-purple">869</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Other</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash3"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-info">911</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- PRODUCTS YEARLY SALES -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Line chart</h3>
+                            <div class="d-md-flex">
+                                <ul class="list-inline d-flex ms-auto">
+                                    <li class="ps-3">
+                                        <h5><i class="fa fa-circle me-1 text-info"></i>Mark</h5>
+                                    </li>
+                                    <li class="ps-3">
+                                        <h5><i class="fa fa-circle me-1 text-inverse"></i>Without Mark</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- <div id="ct-visits" style="height: 405px;">
+                                <div class="chartist-tooltip" style="top: -17px; left: -12px;"><span
+                                        class="chartist-tooltip-value">6</span>
+                                </div>
+                            </div> -->
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Recent sales</h3>
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top">
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Date</th>
+                                            <th class="border-top-0">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="txt-oflo">Elite admin</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 18, 2021</td>
+                                            <td><span class="text-success">$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td class="txt-oflo">Real Homes WP Theme</td>
+                                            <td>EXTENDED</td>
+                                            <td class="txt-oflo">April 19, 2021</td>
+                                            <td><span class="text-info">$1250</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td class="txt-oflo">Ample Admin</td>
+                                            <td>EXTENDED</td>
+                                            <td class="txt-oflo">April 19, 2021</td>
+                                            <td><span class="text-info">$1250</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td class="txt-oflo">Medical Pro WP Theme</td>
+                                            <td>TAX</td>
+                                            <td class="txt-oflo">April 20, 2021</td>
+                                            <td><span class="text-danger">-$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td class="txt-oflo">Hosting press html</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 21, 2021</td>
+                                            <td><span class="text-success">$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td class="txt-oflo">Digital Agency PSD</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 23, 2021</td>
+                                            <td><span class="text-danger">-$14</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td class="txt-oflo">Helping Hands WP Theme</td>
+                                            <td>MEMBER</td>
+                                            <td class="txt-oflo">April 22, 2021</td>
+                                            <td><span class="text-success">$64</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Recent Comments -->
+                <!-- ============================================================== -->
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2022 © Data Engineering <a href="#">HCMUTE</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app-style-switcher.js"></script>
+    <script src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="js/pages/dashboards/dashboard1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        const labels = [
+            'Face',
+            'Without Face',
+            'Other',
+            '',
+            '',
+            ''
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Recognization Face Mark',
+                data: [65, 59, 80],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
