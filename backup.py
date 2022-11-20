@@ -28,13 +28,7 @@ default_app = firebase_admin.initialize_app(cred, {
     'databaseURL': "https://project-realtime-161a1-default-rtdb.firebaseio.com/"})
 
 ref = db.reference("/")
-print(default_app.name)
-# ref.set({
-#     "recognizations":
-#     {
-#         "face_mark": -1
-#     }
-# })
+
 ref = db.reference("/recognizations/face_mark")
 
 
@@ -214,7 +208,9 @@ def video():
 
 @app.route('/get-all-data', methods=['GET'])
 def getAllData():
-    print(ref.get())
+    objectData = ref.get()
+    listData = objectData.values()
+    print(listData)
     return "success"
 
 
