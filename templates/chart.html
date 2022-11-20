@@ -122,7 +122,7 @@
                                         <h5><i class="fa fa-circle me-1 text-info"></i>Mark</h5>
                                     </li>
                                     <li class="ps-3">
-                                        <h5><i class="fa fa-circle me-1 text-inverse"></i>Without Mark</h5>
+                                        <h5><i class="fa fa-circle me-1 text-inverse"></i>Without Mask</h5>
                                     </li>
                                 </ul>
                             </div>
@@ -270,44 +270,71 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx = document.getElementById('myChart');
-        const labels = [
-            'Face',
-            'Without Face',
-            'Other',
-            '',
-            '',
-            ''
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Recognization Face Mark',
-                data: [65, 59, 80],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)'
-                ],
-                borderWidth: 1
-            }]
-        };
-        new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
+        jQuery.ajax({
+            url: 'http://127.0.0.1:30701/get-all-data',
+            type: 'GET',
+            success: function (data) {
+                drawChart(Object.values(data))
+                console.log(12342423)
+            }
         });
+        setInterval(callAPI, 10000);
+        let barChartCanvas;
+        function callAPI() {
+            jQuery.ajax({
+                url: 'http://127.0.0.1:30701/get-all-data',
+                type: 'GET',
+                success: function (data) {
+                    drawChart(Object.values(data))
+
+                }
+            });
+        }
+        const ctx = document.getElementById('myChart');
+        function drawChart(dataRecognizations) {
+            if (barChartCanvas !== undefined) {
+                barChartCanvas.destroy();
+            }
+            const labels = [
+                'Mask',
+                'Without Mask',
+                'Other',
+                '',
+                '',
+                ''
+            ];
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Recognization Face Mask',
+                    data: dataRecognizations,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            barChartCanvas = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                },
+            });
+
+        }
+
     </script>
 </body>
 

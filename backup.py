@@ -211,8 +211,22 @@ def video():
 def getAllData():
     objectData = ref.get()
     listData = objectData.values()
+    mark = 0
+    withoutMark = 0
+    other = 0
+    for data in listData:
+        if data['label'] == 'without_mask':
+            withoutMark = withoutMark + 1
+        elif data['label'] == 'with_mask':
+            mark = mark + 1
+        else:
+            other = other + 1
     print(listData)
-    return "success"
+    return {
+        "mark": mark,
+        "withoutMark": withoutMark,
+        "other": other
+    }
 
 
 @app.route("/chart")
