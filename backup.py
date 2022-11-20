@@ -15,6 +15,7 @@ import json
 import time
 import base64
 from PIL import Image
+from flask import Flask, render_template
 
 # Create Flask Server Backend
 app = Flask(__name__)
@@ -212,6 +213,11 @@ def getAllData():
     listData = objectData.values()
     print(listData)
     return "success"
+
+
+@app.route("/chart")
+def home():
+    return render_template("chart.html")
 
 
 def insertData(x, y, w, label, nowTime, img):
