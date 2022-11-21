@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 import time
 import firebase_admin
-from firebase_admin import credentials
+from firebase_admin import credentials, firestore
 from firebase_admin import db
 import json
 import time
@@ -27,8 +27,6 @@ app.config['VIDEO'] = "RecievedVideo"
 cred = credentials.Certificate('./authentication.json')
 default_app = firebase_admin.initialize_app(cred, {
     'databaseURL': "https://project-realtime-161a1-default-rtdb.firebaseio.com/"})
-
-ref = db.reference("/")
 
 ref = db.reference("/recognizations/face_mark")
 
@@ -144,7 +142,7 @@ def image():
             info += f"{class_ids[i]} {x} {y} {w} {h}\n"
 
             nowTime = int(time.time())
-            insertData(x, y, w, label, nowTime, img.filename)
+            insertData(x, y, w, h, label, nowTime, img.filename)
         pathsave = os.path.join(app.config['LABEL'], f"{name}.txt")
 
         if os.listdir(app.config['UPLOAD_FOLDER']):
@@ -227,16 +225,28 @@ def getAllData():
     }
 
 
+@app.route('/get-data-by-time', methods=['GET'])
+def getDataByTime():
+    database = firestore.client()
+    col_ref = database.collection('/recognizations/face_mark')
+    objectData = col_ref.where('label', '==', 'with_mask').get()
+    listData = objectData.values()
+    mark = 0
+
+    return "success"
+
+
 @app.route("/chart")
 def home():
     return render_template("chart.html")
 
 
-def insertData(x, y, w, label, nowTime, img):
+def insertData(x, y, w, h, label, nowTime, img):
     ref.push().set({
         'x': x,
         'y': y,
         'w': w,
+        'h': h,
         'label': label,
         'time': nowTime,
         'image': img
