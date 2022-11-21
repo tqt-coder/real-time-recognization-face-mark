@@ -16,6 +16,8 @@ import time
 import base64
 from PIL import Image
 from flask import Flask, render_template
+from datetime import datetime, time
+
 
 # Create Flask Server Backend
 app = Flask(__name__)
@@ -227,13 +229,51 @@ def getAllData():
 
 @app.route('/get-data-by-time', methods=['GET'])
 def getDataByTime():
-    database = firestore.client()
-    col_ref = database.collection('/recognizations/face_mark')
-    objectData = col_ref.where('label', '==', 'with_mask').get()
+    objectData = ref.get()
     listData = objectData.values()
-    mark = 0
-
-    return "success"
+    type = 'DAY'
+    # listDataMask = []
+    # listDataWithoutMask = []
+    if type == 'DAY':
+        # dateTimeEnd = datetime.combine(datetime.now(), time.max)
+        # dateUnixTimeEnd = int(dateTimeEnd.timestamp())
+        dateTimeStart = datetime.combine(datetime.now(), time.min)
+        dateUnixTimeStart = int(dateTimeStart.timestamp())
+        t6y = 0
+        t12y = 0
+        t18y = 0
+        t24y = 0
+        t6n = 0
+        t12n = 0
+        t18n = 0
+        t24n = 0
+        for data in listData:
+            if data["time"] >= dateUnixTimeStart and data["time"] <= (dateUnixTimeStart + 3600 * 6):
+                if data['label'] == 'without_mask':
+                    t6n = t6n + 1
+                elif data['label'] == 'with_mask':
+                    t6y = t6y + 1
+            elif data["time"] >= (dateUnixTimeStart + 3600 * 6) and data["time"] <= (dateUnixTimeStart + 3600 * 12):
+                if data['label'] == 'without_mask':
+                    t12n = t12n + 1
+                elif data['label'] == 'with_mask':
+                    t12y = t12y + 1
+            elif data["time"] >= (dateUnixTimeStart + 3600 * 12) and data["time"] <= (dateUnixTimeStart + 3600 * 18):
+                if data['label'] == 'without_mask':
+                    t18n = t18n + 1
+                elif data['label'] == 'with_mask':
+                    t18y = t18y + 1
+            elif data["time"] >= (dateUnixTimeStart + 3600 * 18) and data["time"] <= (dateUnixTimeStart + 3600 * 24):
+                if data['label'] == 'without_mask':
+                    t24n = t24n + 1
+                elif data['label'] == 'with_mask':
+                    t24y = t24y + 1
+    listDataMask = [0, t6y, t12y, t18y, t24y]
+    listDataWithoutMask = [0, t6n, t12n, t18n, t24n]
+    return {
+        "mask": str(listDataMask),
+        "withoutMask": str(listDataWithoutMask)
+    }
 
 
 @app.route("/chart")
