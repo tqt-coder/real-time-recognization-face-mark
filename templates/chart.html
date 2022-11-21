@@ -90,13 +90,13 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-purple">869</span></li>
+                                <li class="ms-auto"><span class="counter text-purple"></span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Other</h3>
+                            <h3 class="box-title">Without Face Mask</h3>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <li>
                                     <div id="sparklinedash3"><canvas width="67" height="30"
@@ -145,85 +145,19 @@
                             <div class="d-md-flex mb-3">
                                 <h3 class="box-title mb-0">Recent sales</h3>
                                 <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
-                                    <select class="form-select shadow-none row border-top">
-                                        <option>January</option>
-                                        <option>February</option>
-                                        <option>March</option>
-                                        <option>April</option>
-                                        <option>May</option>
-                                        <option>June</option>
-                                        <option>July</option>
-                                        <option>August</option>
-                                        <option>September</option>
-                                        <option>October</option>
-                                        <option>November</option>
-                                        <option>December</option>
+                                    <select class="form-select shadow-none row border-top" name="timeOption">
+                                        <option value="DAY">Day</option>
+                                        <option value="WEEK">Week</option>
+                                        <option value="MONTH">Month</option>
+                                        <option value="YEAR">Year</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table no-wrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Name</th>
-                                            <th class="border-top-0">Status</th>
-                                            <th class="border-top-0">Date</th>
-                                            <th class="border-top-0">Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Elite admin</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 18, 2021</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="txt-oflo">Real Homes WP Theme</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2021</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="txt-oflo">Ample Admin</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2021</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                                            <td>TAX</td>
-                                            <td class="txt-oflo">April 20, 2021</td>
-                                            <td><span class="text-danger">-$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="txt-oflo">Hosting press html</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 21, 2021</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td class="txt-oflo">Digital Agency PSD</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 23, 2021</td>
-                                            <td><span class="text-danger">-$14</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td class="txt-oflo">Helping Hands WP Theme</td>
-                                            <td>MEMBER</td>
-                                            <td class="txt-oflo">April 22, 2021</td>
-                                            <td><span class="text-success">$64</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div>
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -275,7 +209,7 @@
             type: 'GET',
             success: function (data) {
                 drawChart(Object.values(data))
-                console.log(12342423)
+                console.log(data)
             }
         });
         setInterval(callAPI, 10000);
@@ -295,10 +229,12 @@
             if (barChartCanvas !== undefined) {
                 barChartCanvas.destroy();
             }
+            // if (barChartCanvas2 !== undefined) {
+            //     barChartCanvas2.destroy();
+            // }
             const labels = [
                 'Mask',
                 'Without Mask',
-                'Other',
                 '',
                 '',
                 ''
@@ -334,6 +270,95 @@
             });
 
         }
+
+
+
+
+        //////////////////////////////////
+        drawChart2();
+        function drawChart2(dataRecognizations) {
+            if (barChartCanvas !== undefined) {
+                barChartCanvas.destroy();
+            }
+            let barChartCanvas2;
+            const ctxLine = document.getElementById('myChart2');
+            const CHART_COLORS = {
+                red: 'rgb(255, 99, 132)',
+                orange: 'rgb(255, 159, 64)',
+                yellow: 'rgb(255, 205, 86)',
+                green: 'rgb(75, 192, 192)',
+                blue: 'rgb(54, 162, 235)',
+                purple: 'rgb(153, 102, 255)',
+                grey: 'rgb(201, 203, 207)'
+            };
+
+            if (barChartCanvas2 !== undefined) {
+                barChartCanvas2.destroy();
+            }
+
+            const labels = [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23
+            ];
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'With Face Mask',
+                        data: [10, 20, 0, 100, 50],
+                        borderColor: CHART_COLORS.red,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    },
+                    {
+                        label: 'Without Face Mask',
+                        data: [80, 20, 40, 10, 50],
+                        borderColor: CHART_COLORS.blue,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    }
+                ]
+            };
+            barChartCanvas2 = new Chart(ctxLine, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Chart.js Line Chart'
+                        }
+                    }
+                },
+            });
+
+        }
+
+
 
     </script>
 </body>
